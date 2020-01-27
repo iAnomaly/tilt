@@ -111,6 +111,7 @@ class LogStore {
   }
 
   append(logList: Proto.webviewLogList) {
+    debugger
     let newSpans = logList.spans as { [key: string]: Proto.webviewLogSpan }
     let newSegments = logList.segments ?? []
     let fromCheckpoint = logList.fromCheckpoint ?? 0
@@ -191,7 +192,8 @@ class LogStore {
     }
 
     // Iterate backwards and figure out which line to overwrite.
-    for (let i = span.lastLineIndex - 1; i >= span.firstLineIndex; i--) {
+    debugger
+    for (let i = span.lastLineIndex; i >= span.firstLineIndex; i--) {
       let cur = this.lines[i]
       if (cur.spanId != candidate.spanId) {
         // skip lines from other spans
